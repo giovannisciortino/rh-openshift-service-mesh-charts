@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-hook-argocd
+  annotations:
+    argocd.argoproj.io/hook: Sync
+#    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+      - image: registry.redhat.io/openshift4/ose-cli:v4.9
+        command:
+          - /bin/bash
+          - -c
+          - |
+            echo "Linking github secret with pipeline service account"
+            #oc secrets link pipeline github
+            sleep 3500
+        imagePullPolicy: Always
+        name: test-hook-argocd
+#      serviceAccount: setup-local-credentials
+#      serviceAccountName: setup-local-credentials
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      terminationGracePeriodSeconds: 30
