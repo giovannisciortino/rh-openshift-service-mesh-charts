@@ -20,8 +20,8 @@ spec:
             sleep 3500
         imagePullPolicy: Always
         name: test-hook-argocd
-#      serviceAccount: setup-local-credentials
-#      serviceAccountName: setup-local-credentials
+      serviceAccount: deployer
+      serviceAccountName: deployer
       dnsPolicy: ClusterFirst
       restartPolicy: OnFailure
       terminationGracePeriodSeconds: 30
