@@ -6,10 +6,10 @@ metadata:
   labels:
     operators.coreos.com/servicemeshoperator.openshift-operators: ""
   name: servicemeshoperator
-  namespace: {{ .Values.serviceMeshNamespace }}
+  namespace: {{ .Values.serviceMeshOperatorNamespace }}
 spec:
-  channel: {{ .Values.serviceMeshChannel }}
-  installPlanApproval: {{ .Values.serviceMeshChannel }}
+  channel: {{ .Values.serviceMeshOperatorChannel }}
+  installPlanApproval: {{ .Values.serviceMeshOperatorChannel }}
   name: servicemeshoperator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
