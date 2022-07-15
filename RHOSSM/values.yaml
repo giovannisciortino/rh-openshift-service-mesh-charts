@@ -12,5 +12,9 @@ jaegerOperatorChannel: "stable"
 jaegerOperatorInstallPlanApproval: "Manual"
 jaegerOperatorNamespace: "openshift-distributed-tracing"
 
+kialiOperatorVersion: "v1.48.0"
+kialiOperatorChannel: "stable"
+kialiOperatorInstallPlanApproval: "Manual"
+kialiOperatorNamespace: "openshift-operators"
 
 operatorInstallPlaneApproveHookImage: "registry.redhat.io/openshift4/ose-cli:v4.9"
