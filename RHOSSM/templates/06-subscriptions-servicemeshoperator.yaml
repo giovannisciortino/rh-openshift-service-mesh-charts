@@ -9,7 +9,7 @@ metadata:
   namespace: {{ .Values.serviceMeshOperatorNamespace }}
 spec:
   channel: {{ .Values.serviceMeshOperatorChannel }}
-  installPlanApproval: {{ .Values.serviceMeshOperatorChannel }}
+  installPlanApproval: {{ .Values.serviceMeshOperatorInstallPlanApproval }}
   name: servicemeshoperator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
