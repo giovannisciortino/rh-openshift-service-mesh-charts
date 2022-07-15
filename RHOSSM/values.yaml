@@ -17,4 +17,9 @@ kialiOperatorChannel: "stable"
 kialiOperatorInstallPlanApproval: "Manual"
 kialiOperatorNamespace: "openshift-operators"
 
+serviceMeshOperatorVersion: "v2.2.0"
+serviceMeshChannel: "stable"
+serviceMeshInstallPlanApproval: "Manual"
+serviceMeshNamespace: "redhat-operators"
+
 operatorInstallPlaneApproveHookImage: "registry.redhat.io/openshift4/ose-cli:v4.9"

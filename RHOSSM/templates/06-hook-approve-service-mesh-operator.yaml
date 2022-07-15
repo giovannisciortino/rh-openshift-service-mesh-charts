@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: hook-approve-elastic-search-operator
+  namespace: kube-system
+  annotations:
+    argocd.argoproj.io/hook: Sync
+    argocd.argoproj.io/sync-wave: "6"
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  template:
+    spec:
+      containers:
+      - image: {{ .Values.operatorInstallPlaneApproveHookImage }}
+        command:
+          - /bin/bash
+          - -c
+          - |
+            while ! oc get InstallPlan -n {{ .Values.serviceMeshNamespace }} | grep "service-mesh-operator. {{ .Values.serviceMeshNamespace }}   Manual     true" ; do
+              echo "Retry patch InstallPlane service-mesh-operator"
+              oc patch installplan $(oc get InstallPlan -n  {{ .Values.serviceMeshNamespace }} | grep "service-mesh-operator. {{ .Values.serviceMeshNamespace }}   Manual"|awk '{print $1}') --namespace  {{ .Values.serviceMeshNamespace }} --type merge --patch '{"spec":{"approved":true}}'
+              sleep 2
+            done
+        imagePullPolicy: Always
+        name: test-hook-argocd
+      serviceAccount: argocd-manager
+      serviceAccountName: argocd-manager
+      dnsPolicy: ClusterFirst
+      restartPolicy: OnFailure
+      terminationGracePeriodSeconds: 30
