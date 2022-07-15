@@ -1,0 +1,15 @@
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+    io.openshift.operators/cluster-wide: "true"
+    io.openshift.servicemesh/flavor: redhat
+    olm.providedAPIs: Jaeger.v1.jaegertracing.io
+  labels:
+    app: openshift-servicemesh
+    kind: operator
+    master: kube-kustomize
+  name: distributed-tracing-operator
+  namespace: {{ .Values.jaegerOperatorNamespace }}
+spec: {}

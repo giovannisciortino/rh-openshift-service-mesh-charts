@@ -3,7 +3,7 @@ kind: Namespace
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
-  name: openshift-distributed-tracing
+  name: {{ .Values.jaegerOperatorNamespace }}
 spec:
   finalizers:
   - kubernetes
