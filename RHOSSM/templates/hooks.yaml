@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
   annotations:
     argocd.argoproj.io/hook: Sync
-    argocd.argoproj.io/sync-wave: "3"
+    argocd.argoproj.io/sync-wave: "2"
     argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
@@ -16,7 +16,7 @@ spec:
           - /bin/bash
           - -c
           - |
-            while ! oc get InstallPlan -n openshift-operators-redhat|grep "elasticsearch-operator.5.4.2   Manual     true" ; do 
+            while ! oc get InstallPlan -n openshift-operators-redhat|grep "elasticsearch-operator.5.4.2   Manual     true" ; do
               echo "Retry patch InstallPlane elasticsearch"
               oc patch installplan $(oc get InstallPlan -n openshift-operators-redhat|grep "elasticsearch-operator.5.4.2   Manual"|awk '{print $1}') --namespace openshift-operators-redhat --type merge --patch '{"spec":{"approved":true}}'
               sleep 2
