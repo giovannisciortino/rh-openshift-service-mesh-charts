@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: hook-approve-elastic-search-operator
+  name: hook-approve-service-mesh-operator
   namespace: kube-system
   annotations:
     argocd.argoproj.io/hook: Sync
