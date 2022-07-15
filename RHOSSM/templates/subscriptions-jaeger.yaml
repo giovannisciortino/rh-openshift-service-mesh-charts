@@ -13,4 +13,4 @@ spec:
   name: jaeger-product
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: jaeger-operator.v{{ .Values.jaegerOperatorVersion }}
+  startingCSV: jaeger-operator.{{ .Values.jaegerOperatorVersion }}

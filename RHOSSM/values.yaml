@@ -7,7 +7,7 @@ elasticsearchOperatorChannel: "stable"
 elasticsearchOperatorInstallPlanApproval: "Manual"
 elasticsearchOperatorNamespace: "openshift-operators-redhat"
 
-jaegerOperatorVersion: "1.34.1-5"
+jaegerOperatorVersion: "v1.34.1-5"
 jaegerOperatorChannel: "stable"
 jaegerOperatorInstallPlanApproval: "Manual"
 jaegerOperatorNamespace: "openshift-distributed-tracing"
