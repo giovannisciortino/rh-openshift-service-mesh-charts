@@ -4,7 +4,7 @@ metadata:
   labels:
     operators.coreos.com/elasticsearch-operator.openshift-operators-redhat: ""
   annotations:
-    argocd.argoproj.io/sync-wave: "2"
+    argocd.argoproj.io/sync-wave: "3"
   name: elasticsearch-operator
   namespace: {{ .Values.elasticsearchOperatorNamespace }}
 spec:
