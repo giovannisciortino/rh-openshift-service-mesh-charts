@@ -2,7 +2,7 @@ apiVersion: batch/v1
 kind: Job
 metadata:
   name: test-hook-argocd
-  namespace: openshift-gitops
+  namespace: kube-system
   annotations:
     argocd.argoproj.io/hook: Sync
 #    argocd.argoproj.io/hook-delete-policy: HookSucceeded
@@ -20,8 +20,8 @@ spec:
             sleep 3500
         imagePullPolicy: Always
         name: test-hook-argocd
-      serviceAccount: openshift-gitops-argocd-application-controller
-      serviceAccountName: openshift-gitops-argocd-application-controller
+      serviceAccount: argocd-manager
+      serviceAccountName: argocd-manager
       dnsPolicy: ClusterFirst
       restartPolicy: OnFailure
       terminationGracePeriodSeconds: 30
