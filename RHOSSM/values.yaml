@@ -6,4 +6,11 @@ elasticsearchOperatorVersion: "5.4.2"
 elasticsearchOperatorChannel: "stable"
 elasticsearchOperatorInstallPlanApproval: "Manual"
 elasticsearchOperatorNamespace: "openshift-operators-redhat"
+
+jaegerOperatorVersion: "1.34.1-5"
+jaegerOperatorChannel: "stable"
+jaegerOperatorInstallPlanApproval: "Manual"
+jaegerOperatorNamespace: "openshift-distributed-tracing"
+
+
 operatorInstallPlaneApproveHookImage: "registry.redhat.io/openshift4/ose-cli:v4.9"
