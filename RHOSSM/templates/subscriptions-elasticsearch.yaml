@@ -6,11 +6,11 @@ metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "2"
   name: elasticsearch-operator
-  namespace: openshift-operators-redhat
+  namespace: {{ .Values.elasticsearchOperatorNamespace }}
 spec:
-  channel: stable
+  channel: {{ .Values.elasticsearchOperatorChannel }}
   installPlanApproval: Manual
   name: elasticsearch-operator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: elasticsearch-operator.5.4.2
+  startingCSV: elasticsearch-operator.{{ .Values.elasticsearchOperatorVersion }}
