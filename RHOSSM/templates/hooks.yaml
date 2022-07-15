@@ -6,8 +6,7 @@ metadata:
   annotations:
     argocd.argoproj.io/hook: Sync
     argocd.argoproj.io/sync-wave: "3"
-
-#    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
 spec:
   template:
     spec:
@@ -17,9 +16,13 @@ spec:
           - /bin/bash
           - -c
           - |
-            echo "Linking github secret with pipeline service account"
-            #oc secrets link pipeline github
-            sleep 3500
+            while ! oc get InstallPlan -n openshift-operators-redhat|grep "elasticsearch-operator.5.4.2   Manual     true" ; do 
+              echo "Retry patch InstallPlane elasticsearch"
+              oc patch installplan $(oc get InstallPlan -n openshift-operators-redhat|grep "elasticsearch-operator.5.4.2   Manual"|awk '{print $1}') --namespace openshift-operators-redhat --type merge --patch '{"spec":{"approved":true}}'
+              sleep 2
+            done
+
+
         imagePullPolicy: Always
         name: test-hook-argocd
       serviceAccount: argocd-manager
