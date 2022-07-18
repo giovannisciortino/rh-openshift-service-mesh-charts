@@ -3,6 +3,7 @@ kind: Namespace
 metadata:
   annotations:
     argocd.argoproj.io/sync-wave: "1"
+    helm.sh/resource-policy: "keep"
   name: {{ .Values.serviceMeshOperatorNamespace }}
 spec:
   finalizers:
