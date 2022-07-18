@@ -1,0 +1,8 @@
+kind: ServiceMeshMemberRoll
+metadata:
+  annotations:
+    argocd.argoproj.io/sync-wave: "8"
+  name: default
+  namespace: {{ .Values.serviceMeshNamespace }}
+spec:
+  members: {{ .Values.serviceMeshNamespace }}

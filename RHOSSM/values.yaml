@@ -23,3 +23,81 @@ serviceMeshOperatorInstallPlanApproval: "Manual"
 serviceMeshOperatorNamespace: "redhat-operators"
 
 operatorInstallPlaneApproveHookImage: "registry.redhat.io/openshift4/ose-cli:v4.9"
+
+serviceMeshNamespace: "istio-system"
+
+serviceMeshEnvironment: "test"
+
+serviceMeshInstanceSpec:
+  proxy:
+    injection:
+      autoInject: true
+      neverInjectSelector:
+      - matchExpressions:
+        - key: openshift.io/build.name
+          operator: Exists
+    runtime:
+      container:
+        resources:
+          limits:
+            memory: 128Mi
+          requests:
+            ##            cpu: 500m
+            cpu: 100m
+            memory: 128Mi
+  istio:
+    gateways:
+      istio-egressgateway:
+        autoscaleEnabled: false
+      istio-ingressgateway:
+        autoscaleEnabled: false
+    global:
+      proxy:
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            memory: 128Mi
+            cpu: 100m
+    grafana:
+      enabled: true
+    kiali:
+      dashboard:
+        viewOnlyMode: true
+      enabled: true
+    mixer:
+      policy:
+        autoscaleEnabled: false
+      telemetry:
+        autoscaleEnabled: false
+        resources:
+          limits:
+            cpu: 500m
+            memory: 4G
+          requests:
+            cpu: 100m
+            memory: 1G
+    pilot:
+      autoscaleEnabled: false
+      traceSampling: 100
+    tracing:
+      enabled: true
+      jaeger:
+        elasticsearch:
+          nodeCount: 3
+          resources:
+            limits:
+              cpu: 1
+              memory: 4Gi
+            requests:
+              cpu: 250m
+              memory: 1Gi
+          storage:
+            size: 100G
+            storageClassName: vsphere-csi-sc-retain
+        template: production-elasticsearch
+
+serviceMeshMemberRollMember:
+  - bookinfo
+  - 3ezb0-svil
