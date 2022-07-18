@@ -116,6 +116,6 @@ serviceMeshInstanceSpec:
 
 
 serviceMeshMemberRollSpec:
-  member: []
+  members: []
 #    - bookinfo
 #    - 3ezb0-svil
