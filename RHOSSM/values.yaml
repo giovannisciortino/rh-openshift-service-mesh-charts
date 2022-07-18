@@ -26,9 +26,42 @@ operatorInstallPlaneApproveHookImage: "registry.redhat.io/openshift4/ose-cli:v4.
 
 serviceMeshNamespace: "istio-system"
 
-serviceMeshEnvironment: "test"
+
+serviceMeshInstanceName: basic-install
 
 serviceMeshInstanceSpec:
+  addons:
+    grafana:
+      enabled: true
+    jaeger:
+      install:
+        storage:
+          elasticsearch:
+            nodeCount: 3
+            storage:
+              size: 100G
+              storageClassName: vsphere-csi-sc-retain
+          type: Elasticsearch
+    kiali:
+      enabled: true
+      install:
+        dashboard:
+          viewOnly: true
+  gateways:
+    egress:
+      runtime:
+        deployment:
+          autoScaling:
+            enabled: false
+      service: {}
+    ingress:
+      runtime:
+        deployment:
+          autoScaling:
+            enabled: false
+      service: {}
+  profiles:
+  - default
   proxy:
     injection:
       autoInject: true
@@ -40,63 +73,49 @@ serviceMeshInstanceSpec:
       container:
         resources:
           limits:
-            memory: 128Mi
-          requests:
-            ##            cpu: 500m
-            cpu: 100m
-            memory: 128Mi
-  istio:
-    gateways:
-      istio-egressgateway:
-        autoscaleEnabled: false
-      istio-ingressgateway:
-        autoscaleEnabled: false
-    global:
-      proxy:
-        resources:
-          limits:
             cpu: 500m
             memory: 128Mi
           requests:
+            cpu: 100m
             memory: 128Mi
-            cpu: 100m
-    grafana:
-      enabled: true
-    kiali:
-      dashboard:
-        viewOnlyMode: true
-      enabled: true
-    mixer:
-      policy:
-        autoscaleEnabled: false
-      telemetry:
-        autoscaleEnabled: false
-        resources:
-          limits:
-            cpu: 500m
-            memory: 4G
-          requests:
-            cpu: 100m
-            memory: 1G
-    pilot:
-      autoscaleEnabled: false
-      traceSampling: 100
-    tracing:
-      enabled: true
-      jaeger:
-        elasticsearch:
-          nodeCount: 3
+  runtime:
+    components:
+      mixer.policy:
+        deployment:
+          autoScaling:
+            enabled: false
+      mixer.telemetry:
+        container:
           resources:
             limits:
-              cpu: 1
+              cpu: 500m
+              memory: 4G
+            requests:
+              cpu: 100m
+              memory: 1G
+        deployment:
+          autoScaling:
+            enabled: false
+      pilot:
+        deployment:
+          autoScaling:
+            enabled: false
+      tracing.jaeger.elasticsearch:
+        container:
+          resources:
+            limits:
+              cpu: "1"
               memory: 4Gi
             requests:
               cpu: 250m
               memory: 1Gi
-          storage:
-            size: 100G
-            storageClassName: vsphere-csi-sc-retain
-        template: production-elasticsearch
+  tracing:
+    sampling: 10000
+    type: Jaeger
+  version: v1.1
+
+serviceMeshEnvironment: "test"
+
 
 serviceMeshMemberRollMember:
   - bookinfo

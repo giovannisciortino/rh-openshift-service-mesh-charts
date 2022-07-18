@@ -5,8 +5,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "7"
   finalizers:
   - maistra.io/istio-operator
-  name: basic-install
+  name: {{ .Values.serviceMeshInstanceName }}
   namespace: {{ .Values.serviceMeshNamespace }}
-  selfLink: /apis/maistra.io/v1/namespaces/istio-system/servicemeshcontrolplanes/basic-install
 spec:
 {{- toYaml .Values.serviceMeshInstanceSpec | nindent 2 }}
