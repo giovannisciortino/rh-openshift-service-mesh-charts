@@ -1,4 +1,4 @@
-# Default values for RHOSSM.
+# Default values for rhossm-operator.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -117,5 +117,4 @@ serviceMeshInstanceSpec:
 
 serviceMeshMemberRollSpec:
   members:
-    - bookinfo
-    - 3ezb0-svil
+    - 3ezb0-test

@@ -1,5 +1,5 @@
 apiVersion: v2
-name: RHOSSM
+name: rhossm-operator
 description: A Helm chart for install Red Hat Service Mesh
 
 # A chart can be either an 'application' or a 'library' chart.
