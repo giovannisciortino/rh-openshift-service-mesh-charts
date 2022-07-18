@@ -1,0 +1,121 @@
+# Default values for RHOSSM.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+elasticsearchOperatorVersion: "5.4.2"
+elasticsearchOperatorChannel: "stable"
+elasticsearchOperatorInstallPlanApproval: "Manual"
+elasticsearchOperatorNamespace: "openshift-operators-redhat"
+
+jaegerOperatorVersion: "v1.34.1-5"
+jaegerOperatorChannel: "stable"
+jaegerOperatorInstallPlanApproval: "Manual"
+jaegerOperatorNamespace: "openshift-distributed-tracing"
+
+kialiOperatorVersion: "v1.48.0"
+kialiOperatorChannel: "stable"
+kialiOperatorInstallPlanApproval: "Manual"
+kialiOperatorNamespace: "openshift-operators"
+
+serviceMeshOperatorVersion: "v2.2.0"
+serviceMeshOperatorChannel: "stable"
+serviceMeshOperatorInstallPlanApproval: "Manual"
+serviceMeshOperatorNamespace: "redhat-operators"
+
+operatorInstallPlaneApproveHookImage: "registry.redhat.io/openshift4/ose-cli:v4.9"
+
+serviceMeshNamespace: "istio-system"
+
+
+serviceMeshInstanceName: basic-install
+
+serviceMeshInstanceSpec:
+  addons:
+    grafana:
+      enabled: true
+    jaeger:
+      install:
+        storage:
+          elasticsearch:
+            nodeCount: 3
+            storage:
+              size: 100G
+              storageClassName: vsphere-csi-sc-retain
+          type: Elasticsearch
+    kiali:
+      enabled: true
+      install:
+        dashboard:
+          viewOnly: true
+  gateways:
+    egress:
+      runtime:
+        deployment:
+          autoScaling:
+            enabled: false
+      service: {}
+    ingress:
+      runtime:
+        deployment:
+          autoScaling:
+            enabled: false
+      service: {}
+  profiles:
+  - default
+  proxy:
+    injection:
+      autoInject: true
+      neverInjectSelector:
+      - matchExpressions:
+        - key: openshift.io/build.name
+          operator: Exists
+    runtime:
+      container:
+        resources:
+          limits:
+            cpu: 500m
+            memory: 128Mi
+          requests:
+            cpu: 100m
+            memory: 128Mi
+  runtime:
+    components:
+      mixer.policy:
+        deployment:
+          autoScaling:
+            enabled: false
+      mixer.telemetry:
+        container:
+          resources:
+            limits:
+              cpu: 500m
+              memory: 4G
+            requests:
+              cpu: 100m
+              memory: 1G
+        deployment:
+          autoScaling:
+            enabled: false
+      pilot:
+        deployment:
+          autoScaling:
+            enabled: false
+      tracing.jaeger.elasticsearch:
+        container:
+          resources:
+            limits:
+              cpu: "1"
+              memory: 4Gi
+            requests:
+              cpu: 250m
+              memory: 1Gi
+  tracing:
+    sampling: 10000
+    type: Jaeger
+  version: v1.1
+
+
+serviceMeshMemberRollSpec:
+  members:
+    - bookinfo
+    - 3ezb0-svil
