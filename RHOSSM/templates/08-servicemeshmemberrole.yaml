@@ -6,4 +6,4 @@ metadata:
   name: default
   namespace: {{ .Values.serviceMeshNamespace }}
 spec:
-{{ .Values.serviceMeshMemberRollSpec | nindent 2 }}
+{{- toYaml .Values.serviceMeshMemberRollSpec | nindent 2 }}
