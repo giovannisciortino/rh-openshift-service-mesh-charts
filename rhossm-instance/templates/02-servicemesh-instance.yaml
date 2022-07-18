@@ -2,7 +2,7 @@ apiVersion: maistra.io/v2
 kind: ServiceMeshControlPlane
 metadata:
   annotations:
-    argocd.argoproj.io/sync-wave: "7"
+    argocd.argoproj.io/sync-wave: "2"
   finalizers:
   - maistra.io/istio-operator
   name: {{ .Values.serviceMeshInstanceName }}

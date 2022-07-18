@@ -1,31 +1,8 @@
-# Default values for rhossm-operator.
+# Default values for rhossm-instance.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-elasticsearchOperatorVersion: "5.4.2"
-elasticsearchOperatorChannel: "stable"
-elasticsearchOperatorInstallPlanApproval: "Manual"
-elasticsearchOperatorNamespace: "openshift-operators-redhat"
-
-jaegerOperatorVersion: "v1.34.1-5"
-jaegerOperatorChannel: "stable"
-jaegerOperatorInstallPlanApproval: "Manual"
-jaegerOperatorNamespace: "openshift-distributed-tracing"
-
-kialiOperatorVersion: "v1.48.0"
-kialiOperatorChannel: "stable"
-kialiOperatorInstallPlanApproval: "Manual"
-kialiOperatorNamespace: "openshift-operators"
-
-serviceMeshOperatorVersion: "v2.2.0"
-serviceMeshOperatorChannel: "stable"
-serviceMeshOperatorInstallPlanApproval: "Manual"
-serviceMeshOperatorNamespace: "redhat-operators"
-
-operatorInstallPlaneApproveHookImage: "registry.redhat.io/openshift4/ose-cli:v4.9"
-
 serviceMeshNamespace: "istio-system"
-
 
 serviceMeshInstanceName: basic-install
 
