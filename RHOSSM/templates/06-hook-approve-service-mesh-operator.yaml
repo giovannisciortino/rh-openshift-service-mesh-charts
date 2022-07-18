@@ -16,9 +16,9 @@ spec:
           - /bin/bash
           - -c
           - |
-            while ! oc get InstallPlan -n {{ .Values.serviceMeshOperatorNamespace }} | grep "servicemeshoperator.{{ .Values.serviceMeshOperatorVersion }}   Manual     true" ; do
+            while ! oc get InstallPlan -n {{ .Values.serviceMeshOperatorNamespace }} | grep "servicemeshoperator.{{ .Values.serviceMeshOperatorVersion }} \+Manual \+true" ; do
               echo "Retry patch InstallPlane servicemeshoperator"
-              oc patch installplan $(oc get InstallPlan -n {{ .Values.serviceMeshOperatorNamespace }} | grep "servicemeshoperator.{{ .Values.serviceMeshOperatorVersion }}   Manual"|awk '{print $1}') --namespace  {{ .Values.serviceMeshOperatorNamespace }} --type merge --patch '{"spec":{"approved":true}}'
+              oc patch installplan $(oc get InstallPlan -n {{ .Values.serviceMeshOperatorNamespace }} | grep "servicemeshoperator.{{ .Values.serviceMeshOperatorVersion }} \+Manual"|awk '{print $1}') --namespace  {{ .Values.serviceMeshOperatorNamespace }} --type merge --patch '{"spec":{"approved":true}}'
               sleep 2
             done
         imagePullPolicy: Always
