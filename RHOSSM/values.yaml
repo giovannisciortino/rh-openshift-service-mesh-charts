@@ -114,9 +114,8 @@ serviceMeshInstanceSpec:
     type: Jaeger
   version: v1.1
 
-serviceMeshEnvironment: "test"
 
-
-serviceMeshMemberRollMember: []
-#  - bookinfo
-#  - 3ezb0-svil
+serviceMeshMemberRollSpec:
+  member: []
+#    - bookinfo
+#    - 3ezb0-svil
