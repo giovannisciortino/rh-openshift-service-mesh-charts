@@ -2,7 +2,7 @@
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
-elasticsearchOperatorVersion: "5.4.2"
+elasticsearchOperatorVersion: "5.4.3"
 elasticsearchOperatorChannel: "stable"
 elasticsearchOperatorInstallPlanApproval: "Manual"
 elasticsearchOperatorNamespace: "openshift-operators-redhat"
