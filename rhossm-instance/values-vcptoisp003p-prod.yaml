@@ -92,5 +92,5 @@ serviceMeshInstanceSpec:
   version: v1.1
 
 
-serviceMeshMemberRollSpec:
-  members: []
+serviceMeshMemberRollSpec: {}
+#  members: []
