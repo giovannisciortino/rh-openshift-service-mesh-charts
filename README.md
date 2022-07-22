@@ -15,15 +15,15 @@ The values.yaml file contains the channels,namespaces,versions of each operator 
 | IMPORTANT NOTE: |
 |--|
 |Before to apply this chart verify if exists operators already installed with “installPlanApproval: Manual” in the following namespaces:  
-- openshift-operators-redhat
-- openshift-distributed-tracing
-- openshift-operators
-- redhat-operators
-
+ openshift-operators-redhat
+ openshift-distributed-tracing
+ openshift-operators
+ redhat-operators
+|
 For the expected behaviour described in [2], the automatic InstallPlan approval of the 4 operators installed by this chart approve also any pending operator upgrade(if available) in the namespaces listed above. If there are any pending operator upgrades verify the impact of the upgrade of these operators and sync this chart during a maintenance windows if it's needed.
 
 
-2) rhossm-instance
+## 2) rhossm-instance
 
 This chart create a new mesh of Red Hat Service Mesh.
 It create the namespace of the new mesh, a ServiceMeshControlPlane resource and a ServiceMeshMemberRoll.
